@@ -8,7 +8,7 @@
 
 <h1>Checkout</h1>
 
-@if (Model.Items.Count == 0)
+@if (Model.Items != null && Model.Items.Count == 0)
 {
     <p>You do not have any items in your Basket</p>
 } else

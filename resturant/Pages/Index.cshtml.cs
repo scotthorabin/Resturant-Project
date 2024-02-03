@@ -47,6 +47,7 @@ namespace resturant.Pages
             CheckoutCustomer customer = await _db
                 .CheckoutCustomers
                 .FindAsync(user.Email);
+            
 
             var item = _db.BasketItems
                 .FromSqlRaw("SELECT * FROM BasketItems WHERE StockID = {0}" +
