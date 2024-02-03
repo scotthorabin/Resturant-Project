@@ -1,0 +1,44 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+/*Flex Container For Menu*/
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.flex-container > div {
+    background-color: skyblue;
+    border-radius: 5px;
+    width: 300px;
+    margin: 10px;
+    padding: 5px;
+    text-align: center;
+    line-height: 25px;
+    font-size: 18px;
+    -webkit-transition-duration: 1.4s;
+    transition-duration: 1.4s;
+}
+
+.flex-container > div:hover {
+    background-color: gold;
+    color: white;
+}

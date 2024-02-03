@@ -1,0 +1,82 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about this resturant</p>
+</div>
+
+<div class="text-center">
+    <h2 class="display-4">Our Menu</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var tblFoodItems in Model.FoodItem)
+            {
+                <tr>
+                    <td>@tblFoodItems.Id</td>
+                    <td>@tblFoodItems.Item_name</td>
+                    <td>@tblFoodItems.Item_desc</td>
+                    <td>@tblFoodItems.Price</td>
+                    <td>
+                    <form method="post">
+                        <button type="submit" asp-page-handler="Buy" asp-route-itemID="@tblFoodItems.Id">
+                            Add To Basket
+                        </button>
+                    </form>
+                
+                  @{
+                            try
+                            {
+                            <td>
+                                <img src="@string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(tblFoodItems.ImageData))" alt="@tblFoodItems.ImageDescription" />
+                            </td>
+                            }
+                            catch
+                            {
+                            <td>
+                                <img class="img-thumb" src="/img/no-image.png" alt="No Image provided" />
+                            </td>
+                            }
+                      
+                           
+                        }
+                   
+                </tr>
+
+            }
+        </tbody>
+
+    </table>
+
+    <div class="flex-container">
+        @foreach (var tblFoodItems in Model.FoodItem)
+        {
+            <div>
+                <p>@Html.DisplayFor(modelItem => tblFoodItems.Item_name)</p>
+                <p>@Html.DisplayFor(modelItem => tblFoodItems.Price)</p>
+                <p>@Html.DisplayFor(modelItem => tblFoodItems.Item_desc)</p>
+                </div>
+        }
+    </div>
+
+    <h2>Search</h2>
+    <form method="post">
+        <div>Search <input asp-for="Search" /></div>
+        <button type="submit" asp-page-handler="Search">Submit</button>
+        </form>
+
+
+</div>
