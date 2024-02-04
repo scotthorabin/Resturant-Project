@@ -150,6 +150,7 @@ namespace resturant.Areas.Identity.Pages.Account
                     else
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
+                        // methods for creating basket and passes the users email
                         NewBasket();
                         NewCustomer(Input.Email);
                         return LocalRedirect(returnUrl);
@@ -165,6 +166,7 @@ namespace resturant.Areas.Identity.Pages.Account
             return Page();
         }
 
+        // create new basket by looking at existing basket record
         public void NewBasket()
         {
             var currentBasket = _db.Baskets.FromSqlRaw("SELECT * FROM Baskets")
@@ -182,6 +184,7 @@ namespace resturant.Areas.Identity.Pages.Account
             _db.SaveChanges();
         }
 
+        // create new customer using the email that has been registered
         public void NewCustomer(string email)
         {
             Customer.Email = Input.Email;

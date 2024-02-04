@@ -9,6 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace resturant.Data
 {
+    // updated to use Identity
     public class resturantContext : IdentityDbContext
     {
         public resturantContext (DbContextOptions<resturantContext> options)
@@ -25,6 +26,8 @@ namespace resturant.Data
         public DbSet<BasketItem> BasketItems { get; set; } = default!;
 
         public DbSet<OrderHistory> OrderHistories { get; set; } = default!;
+
+        // Code changes from Fooditem to Fooditems
         public DbSet<OrderItems> OrderItems { get; set; } = default!;
 
         [NotMapped]

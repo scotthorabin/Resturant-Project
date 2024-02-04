@@ -8,7 +8,7 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about this resturant</p>
 </div>
-
+<!--Create a table to display the data from the created database-->
 <div class="text-center">
     <h2 class="display-4">Our Menu</h2>
 
@@ -21,8 +21,9 @@
                 <th>Price</th>
             </tr>
         </thead>
-
+        <!--Body contains rows for each entry, will loop through the values for each entry-->
         <tbody>
+            <!--variable to store each item-->
             @foreach (var tblFoodItems in Model.FoodItem)
             {
                 <tr>
@@ -71,7 +72,7 @@
                 </div>
         }
     </div>
-
+    <!--Search buttons that allows users to search specific records-->
     <h2>Search</h2>
     <form method="post">
         <div>Search <input asp-for="Search" /></div>

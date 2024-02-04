@@ -14,21 +14,27 @@
     <thead>
         <tr>
             <th>
+                <!-- heading for item name-->
                 @Html.DisplayNameFor(model => model.FoodItem[0].Item_name)
             </th>
             <th>
+                <!-- heading for item description-->
                 @Html.DisplayNameFor(model => model.FoodItem[0].Item_desc)
             </th>
             <th>
+                <!-- heading for item available-->
                 @Html.DisplayNameFor(model => model.FoodItem[0].Available)
             </th>
             <th>
+                <!-- heading for item vegetarian-->
                 @Html.DisplayNameFor(model => model.FoodItem[0].Vegetarian)
             </th>
             <th>
+                <!-- heading for item price-->
                 @Html.DisplayNameFor(model => model.FoodItem[0].Price)
             </th>
             <th>
+                <!-- heading for image data-->
                 @Html.DisplayNameFor(model => model.FoodItem[0].ImageData)
             </th>
             
@@ -54,6 +60,7 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
                 @{
+                    // statement for displaying the image
                     try
                     {
                         <td>

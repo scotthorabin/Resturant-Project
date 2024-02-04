@@ -4,16 +4,19 @@ namespace resturant.Data
 {
     public class IdentitySeedData
     {
+        // new method that will have database context, user manager and role manager
         public static async Task Initialize(resturantContext context,
             UserManager<IdentityUser> userManager,
             RoleManager<IdentityRole> roleManager)
         {
+            // Checks to see if database has been created
             context.Database.EnsureCreated();
-
+            // Declare variable for role names and password
             string adminRole = "Admin";
             string memberRole = "Member";
             string password4all = "P@55word";
 
+            // If roles are not found, then create them
             if (await roleManager.FindByNameAsync(adminRole) == null)
             {
                 await roleManager.CreateAsync(new IdentityRole(adminRole));
@@ -23,6 +26,8 @@ namespace resturant.Data
             {
                 await roleManager.CreateAsync(new IdentityRole(memberRole));
             }
+
+            // if admin user does not exist then create and assign
 
             if (await userManager.FindByNameAsync("admin@uoc.ac.uk") == null)
             {
@@ -41,7 +46,7 @@ namespace resturant.Data
                 }
                 
             }
-
+            // if member user does not exist then create and assign
             if (await userManager.FindByNameAsync("member@uoc.ac.uk") == null)
             {
                 var user = new IdentityUser

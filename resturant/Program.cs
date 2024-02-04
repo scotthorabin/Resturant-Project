@@ -12,7 +12,7 @@ builder.Services.AddDbContext<resturantContext>(options =>
 //builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
 //  .AddEntityFrameworkStores<resturantContext>();
 
-
+// Add to code to identity the identity types
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(
     options =>
     {
@@ -54,11 +54,14 @@ else
     app.UseMigrationsEndPoint();
 }
 
+// Code below creates the database if it doesn't already exist
+
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
 
     var context = services.GetRequiredService<resturantContext>();
+    // If not database already exists, create it aswell as the schema
     context.Database.EnsureCreated();
     DbInitializer.Initialize(context);
 }
@@ -73,6 +76,8 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 
+// code gets context, instructs database migration
+// gets instances of user manager and role manager
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -80,6 +85,7 @@ using (var scope = app.Services.CreateScope())
     context.Database.Migrate();
     var userMgr = services.GetRequiredService<UserManager<IdentityUser>>();
     var roleMgr = services.GetRequiredService<RoleManager<IdentityRole>>();
+    // call initialize method from Identityseed to context.
     IdentitySeedData.Initialize(context, userMgr, roleMgr).Wait();
 }
 

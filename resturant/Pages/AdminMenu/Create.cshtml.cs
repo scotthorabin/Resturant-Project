@@ -36,12 +36,16 @@ namespace resturant.Pages.AdminMenu
                 return Page();
             }
 
+          // Created to catch the image from the admin and save it to the database
+          // for loop
           foreach (var file in Request.Form.Files)
             {
+                //convert file into a binary stream
                 MemoryStream ms = new MemoryStream();
                 file.CopyTo(ms);
+                // save it into a byte array
                 FoodItem.ImageData = ms.ToArray();
-
+                // closes and disposes memory stream
                 ms.Close();
                 ms.Dispose();
             }

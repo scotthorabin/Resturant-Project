@@ -31,10 +31,10 @@ namespace resturant.Pages
             Items = _db.CheckoutItems.FromSqlRaw(
                 "SELECT FoodItem.ID, FoodItem.Price, " +
                 "FoodItem.Item_Name, " +
-                "BasketItem.BasketID, BasketItems.Quantity " +
+                "BasketID, BasketItems.Quantity " +
                 "FROM FoodItem INNER JOIN BasketItems " +
                 "ON FoodItem.ID = BasketItems.StockID " +
-                "WHERE BasketID = {0}", customer.BasketID).ToList();
+                "WHERE BasketID = 0", customer.BasketID).ToList();
 
             Total = 0;
 

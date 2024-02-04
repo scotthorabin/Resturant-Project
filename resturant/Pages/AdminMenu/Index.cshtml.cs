@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace resturant.Pages.AdminMenu
 {
+    // user has to be in the admin role to access page
     [Authorize (Roles = "Admin")]
     public class IndexModel : PageModel
     {

@@ -13,35 +13,42 @@
     <div class="col-md-4">
         <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <!--Code for item name, simple input tag-->
             <div class="form-group">
                 <label asp-for="FoodItem.Item_name" class="control-label"></label>
                 <input asp-for="FoodItem.Item_name" class="form-control" />
                 <span asp-validation-for="FoodItem.Item_name" class="text-danger"></span>
             </div>
+            <!--code for item description, simple input tag-->
             <div class="form-group">
                 <label asp-for="FoodItem.Item_desc" class="control-label"></label>
                 <input asp-for="FoodItem.Item_desc" class="form-control" />
                 <span asp-validation-for="FoodItem.Item_desc" class="text-danger"></span>
             </div>
+            <!--Code for Available option, simple input tag-->
             <div class="form-group">
                 <label asp-for="FoodItem.Available" class="control-label"></label>
                 <input asp-for="FoodItem.Available" class="form-control" />
                 <span asp-validation-for="FoodItem.Available" class="text-danger"></span>
             </div>
+            <!--Code for Vegetarian option-->
             <div class="form-group">
                 <label asp-for="FoodItem.Vegetarian" class="control-label"></label>
                 <input asp-for="FoodItem.Vegetarian" class="form-control" />
                 <span asp-validation-for="FoodItem.Vegetarian" class="text-danger"></span>
             </div>
+            <!--Code for Price-->
             <div class="form-group">
                 <label asp-for="FoodItem.Price" class="control-label"></label>
                 <input asp-for="FoodItem.Price" class="form-control" />
                 <span asp-validation-for="FoodItem.Price" class="text-danger"></span>
             </div>
+            <!--Code for image description, simple input tag-->
             <div class="form-group">
                 <label asp-for="FoodItem.ImageDescription" class="control-label">Image Description (Alt-text)</label>
                 <input asp-for="FoodItem.ImageDescription" class="form-control"/>
             </div>
+            <!--Code that allows admin to upload an image-->
             <div class="form-group">
                 <label asp-for="FoodItem.ImageData" class="control-label">Image Upload</label>
 

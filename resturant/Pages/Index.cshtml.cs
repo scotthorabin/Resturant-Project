@@ -16,8 +16,10 @@ namespace resturant.Pages
 
         private readonly resturantContext _db;
         private readonly UserManager<IdentityUser> _userManager;
+        // code adds a variable to hold the database
         private readonly resturantContext _context;
 
+        // need a constructor to inject database into the variable created above
         public IndexModel(resturantContext  context, ILogger<IndexModel> logger, resturantContext db, UserManager<IdentityUser> userManager)
         {
             _context = context;
@@ -26,9 +28,11 @@ namespace resturant.Pages
             _userManager = userManager;
         }
 
+        // Created this to store all data from the database
+        // Will be a list which holds Fooditem table in SQL
         public IList<FoodItem> FoodItem { get; set; } 
 
-    
+        // code populates list using the SQL search created
         public void OnGet()
         {
             FoodItem = _context.FoodItems.FromSqlRaw("Select * FROM FoodItem").ToList();
@@ -40,7 +44,8 @@ namespace resturant.Pages
                 .FromSqlRaw("SELECT * FROM FoodItem WHERE Item_name LIKE '" + Search + "%'").ToList();
             return Page();
         }
-
+        // new method which accepts the sent itemID
+        // Checks the basketitems record to find the basket
         public async Task<IActionResult> OnPostBuyAsync(int itemID)
         {
             var user = await _userManager.GetUserAsync(User);
