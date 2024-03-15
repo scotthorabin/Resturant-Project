@@ -8,7 +8,6 @@ namespace resturant.Data
         [StringLength(50)]
         public string Email { get; set; }
         [StringLength(50)]
-        public string Name { get; set; }
         public int BasketID { get; set; }
     }
 

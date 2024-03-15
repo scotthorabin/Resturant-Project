@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using resturant.Data;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-
+using resturant.Pages.Models;
 namespace resturant.Pages
 {
     public class CheckoutModel : PageModel
@@ -13,8 +13,8 @@ namespace resturant.Pages
         private readonly UserManager<IdentityUser> _UserManager;
         public IList<CheckoutItem> Items { get; private set; }
 
-        public decimal Total;
-        public long AmountPayable;
+        public decimal Total = 0;
+        public long AmountPayable = 0;
 
         public OrderHistory Order = new OrderHistory();
 
@@ -29,12 +29,8 @@ namespace resturant.Pages
             CheckoutCustomer customer = await _db.CheckoutCustomers.FindAsync(user.Email);
 
             Items = _db.CheckoutItems.FromSqlRaw(
-                "SELECT FoodItem.ID, FoodItem.Price, " +
-                "FoodItem.Item_Name, " +
-                "BasketID, BasketItems.Quantity " +
-                "FROM FoodItem INNER JOIN BasketItems " +
-                "ON FoodItem.ID = BasketItems.StockID " +
-                "WHERE BasketID = 0", customer.BasketID).ToList();
+                "SELECT FoodItem.ID, FoodItem.Price, FoodItem.Item_Name,  BasketItems.BasketID, BasketItems.Quantity   FROM FoodItem INNER JOIN BasketItems ON FoodItem.ID = BasketItems.StockID WHERE BasketID = {0}",
+                customer.BasketID).ToList();
 
             Total = 0;
 

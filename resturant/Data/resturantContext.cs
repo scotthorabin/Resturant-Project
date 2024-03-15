@@ -30,6 +30,7 @@ namespace resturant.Data
         // Code changes from Fooditem to Fooditems
         public DbSet<OrderItems> OrderItems { get; set; } = default!;
 
+
         [NotMapped]
         public DbSet<CheckoutItem> CheckoutItems { get; set; } = default!;
 

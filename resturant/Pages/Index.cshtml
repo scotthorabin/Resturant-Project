@@ -6,61 +6,13 @@
 
 <div class="welcome">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about this resturant</p>
+    <!--Search buttons that allows users to search specific records-->
+    <h2>Search</h2>
+    <form method="post">
+        <div>Search <input asp-for="Search" /></div>
+        <button type="submit" asp-page-handler="Search">Submit</button>
+    </form>
 </div>
-<!--Create a table to display the data from the created database-->
-<div class="text-center">
-    <h2 class="display-4">Our Menu</h2>
-
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Price</th>
-            </tr>
-        </thead>
-        <!--Body contains rows for each entry, will loop through the values for each entry-->
-        <tbody>
-            <!--variable to store each item-->
-            @foreach (var tblFoodItems in Model.FoodItem)
-            {
-                <tr>
-                    <td>@tblFoodItems.Id</td>
-                    <td>@tblFoodItems.Item_name</td>
-                    <td>@tblFoodItems.Item_desc</td>
-                    <td>@tblFoodItems.Price</td>
-                    <td>
-                    <form method="post">
-                        <button type="submit" asp-page-handler="Buy" asp-route-itemID="@tblFoodItems.Id">
-                            Add To Basket
-                        </button>
-                    </form>
-                
-                  @{
-                            try
-                            {
-                            <td>
-                                <img src="@string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(tblFoodItems.ImageData))" alt="@tblFoodItems.ImageDescription" />
-                            </td>
-                            }
-                            catch
-                            {
-                            <td>
-                                <img class="img-thumb" src="/img/no-image.png" alt="No Image provided" />
-                            </td>
-                            }
-                      
-                           
-                        }
-                   
-                </tr>
-
-            }
-        </tbody>
-
-    </table>
 
     <div class="flex-container">
         @foreach (var tblFoodItems in Model.FoodItem)
@@ -69,15 +21,31 @@
                 <p>@Html.DisplayFor(modelItem => tblFoodItems.Item_name)</p>
                 <p>@Html.DisplayFor(modelItem => tblFoodItems.Price)</p>
                 <p>@Html.DisplayFor(modelItem => tblFoodItems.Item_desc)</p>
+                <form method="post">
+                    <button type="submit" asp-page-handler="Buy" asp-route-itemID="@tblFoodItems.Id">
+                        Add To Basket
+                    </button>
+                </form>
+                @{
+                    try
+                    {
+                        <td>
+                            <img src="@string.Format("data:image/jpg;base64,{0}", Convert.ToBase64String(tblFoodItems.ImageData))" alt="@tblFoodItems.ImageDescription" />
+                        </td>
+                    }
+                    catch
+                    {
+                        <td>
+                            <img class="img-thumb" src="/img/no-image.png" alt="No Image provided" />
+                        </td>
+                    }
+
+
+                }
                 </div>
         }
     </div>
-    <!--Search buttons that allows users to search specific records-->
-    <h2>Search</h2>
-    <form method="post">
-        <div>Search <input asp-for="Search" /></div>
-        <button type="submit" asp-page-handler="Search">Submit</button>
-        </form>
+    
 
 
 </div>

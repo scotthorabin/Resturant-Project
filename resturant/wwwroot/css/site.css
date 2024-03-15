@@ -39,7 +39,7 @@ body {
 }
 
 .flex-container > div:hover {
-    background-color: gold;
+    background-color:olivedrab;
     color: white;
 }
 
@@ -73,7 +73,7 @@ hr.Solid {
 /*Welcome message, wanted the header bold to catch the user's eye*/
 .welcome h1 {
     text-align: center;
-    font-size: 50px;
+    font-size: 100px;
     text-transform: uppercase;
     color: #222;
     letter-spacing: 1px;
@@ -96,3 +96,71 @@ hr.Solid {
         grid-gap: 20px;
         align-items: center;
     }
+
+    .contact-container{
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .contact-left {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 20px;
+    }
+
+    .contact-left-title h2 {
+        font-weight: 600;
+        color: #a363aa;
+        font-size: 40px;
+        margin-bottom: 5px;
+    }
+
+    .contact-left-title hr {
+        border: none;
+        width: 120px;
+        height: 5px;
+        background-color: #a363aa;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .contact-inputs {
+        width: 400px;
+        height: 50px;
+        border: none;
+        outline: none;
+        padding-left: 25px;
+        font-weight: 500;
+        color: #666;
+        border-radius:50px;
+    }
+    .contact-left textarea{
+        height: 140px;
+        padding-top: 15px;
+        border-radius: 20px;
+    }
+.contact-inputs:focus{
+    border: 2px solid gold;
+}
+.contact-inputs::placeholder{
+    color:lightblue;
+}
+.contact-left button {
+    display: flex;
+    align-items: center;
+    padding: 15px 30px;
+    font-size: 16px;
+    color: #fff;
+    gap: 10px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(270deg,#ff944f,lightblue);
+    cursor: pointer;
+}
+
+bodyC{
+    background: linear-gradient(#ffdad5, #fff7f9);
+}
