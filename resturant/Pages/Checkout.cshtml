@@ -24,8 +24,6 @@
                 </tr>
             </thead>
             <tbody>
-                @if (Model.Items != null)
-                {
                     @foreach (var item in Model.Items)
                     {
                         var subtotal = item.Price * item.Quantity;
